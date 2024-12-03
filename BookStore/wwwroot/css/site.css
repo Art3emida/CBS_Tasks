@@ -1,0 +1,31 @@
+html, body {
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header > nav {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+main {
+    flex-grow: 1;
+}
+
+main .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+footer .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.form-buttons {
+    padding-left: 200px;
+}

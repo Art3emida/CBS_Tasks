@@ -1,0 +1,61 @@
+@model List<Author>
+
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a href="@Url.Action("create")" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add New Author
+        </a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Birth Date</th>
+                <th>Books Count</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                @foreach (Author author in Model)
+                {
+                    <tr>
+                        <td>@author.LastName</td>
+                        <td>@author.FirstName</td>
+                        <td>@author.MiddleName</td>
+                        <td>@author.BirthDate.ToString("yyyy-MM-dd")</td>
+                        <td>@author.Books.Count</td>
+                        <td>
+                            <a href="@Url.Action("edit", new { id = author.Id })" class="btn btn-primary">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a href="@Url.Action("delete", new { id = author.Id })" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No authors available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

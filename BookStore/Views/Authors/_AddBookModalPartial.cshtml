@@ -1,0 +1,37 @@
+@model int
+
+<div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addBookForm">
+                    <div class="mb-3">
+                        <label for="bookTitle" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="bookTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bookGenre" class="form-label">Genre</label>
+                        <select class="form-control" id="bookGenre" required>
+                            @foreach (var genre in ViewBag.Genres as List<Genre>)
+                            {
+                            <option value="@genre">@genre</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bookPages" class="form-label">Total Pages</label>
+                        <input type="number" class="form-control" id="bookPages" required min="1">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveBook(@Model)">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
